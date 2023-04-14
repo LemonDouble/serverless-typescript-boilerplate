@@ -1,0 +1,21 @@
+service: serverless-typescript-boilerplate
+frameworkVersion: '3'
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: ap-northeast-1
+  stage: dev
+  architecture: arm64 # ARM이 x86보다 조금이라도 싸서..
+
+functions:
+  hello:
+    handler: src/handler.handle
+    events:
+      - httpApi:
+          path: /
+          method: any
+
+plugins:
+  - serverless-plugin-typescript
+  - serverless-dotenv-plugin
